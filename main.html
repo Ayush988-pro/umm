@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropdown and Embedded Page</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            transition: filter 0.3s ease;
+        }
+
+        /* Dropdown menu styles */
+        .navbar {
+            background-color: #333;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            position: relative;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Blur effect when dropdown is open */
+        .blur {
+            filter: blur(5px);
+        }
+
+        /* Dropdown button */
+        .dropbtn {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dropbtn:hover {
+            background-color: #555;
+        }
+
+        /* Embedded Page Section */
+        .map-container {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full viewport height */
+            width: 100vw; /* Full viewport width */
+            overflow: hidden; /* Prevent scrollbars */
+        }
+
+        .map-3d {
+            width: 100%;
+            height: 100%;
+            max-width: 100%; /* Ensure it fits within the viewport */
+            max-height: 100%; /* Ensure it fits within the viewport */
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-3d iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar with Dropdown Menu -->
+    <div class="navbar">
+        <div class="dropdown">
+            <button class="dropbtn">Menu</button>
+            <div class="dropdown-content">
+                <a href="#" onclick="window.location.href='train.html'">Trains</a>
+                <a href="#" onclick="window.location.href='facilities1.html'">Facilities</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">Email Us</button>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn" onclick="window.location.href='customer.html'">Customer Support</button>
+        </div>
+    </div>
+
+    <!-- Embedded Page Section -->
+    <div class="map-container">
+        <div class="map-3d">
+            <iframe src="index.html" title="Embedded Page"></iframe>
+        </div>
+    </div>
+
+    <!-- JavaScript to add blur when dropdown is opened -->
+    <script>
+        // Get the dropdown elements
+        const dropdowns = document.querySelectorAll('.dropdown');
+
+        // Function to add blur effect
+        function addBlur() {
+            document.body.classList.add('blur');
+        }
+
+        // Function to remove blur effect
+        function removeBlur() {
+            document.body.classList.remove('blur');
+        }
+
+        // Event listeners for dropdowns
+        dropdowns.forEach(dropdown => {
+            dropdown.addEventListener('mouseover', addBlur);
+            dropdown.addEventListener('mouseout', removeBlur);
+        });
+    </script>
+
+</body>
+</html>
+
+

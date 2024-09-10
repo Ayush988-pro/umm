@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            background-color: #4095E5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .login-container {
+            text-align: center;
+            width: 300px;
+        }
+        h1 {
+            font-size: 24px;
+            color: white;
+            margin-bottom: 20px;
+            text-decoration: underline;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+        }
+        .login-btn, .signup-btn {
+            width: 107%; /* Make the buttons as wide as the input fields */
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            border: none;
+            color: white;
+        }
+        .login-btn {
+            background-color: green;
+        }
+        .login-btn:hover {
+            background-color: darkgreen;
+        }
+        .signup-btn {
+            background-color: orange;
+        }
+        .signup-btn:hover {
+            background-color: darkorange;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Login</h1>
+        <input type="text" placeholder="Enter Username" required>
+        <input type="password" placeholder="Enter Password" required>
+        <button class="login-btn" onclick="window.location.href='location.html'">Login</button>
+        <button class="signup-btn" onclick="window.location.href='https:www.irctc.co.in'">Sign Up</button>
+    </div>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Station Navigation</title>
+    <style>
+        /* Style for the map container */
+        #map-container {
+            position: relative;
+            width: 600px;
+            height: 600px;
+            background-color: lightgrey;
+            margin: 20px auto;
+            border: 2px solid #333;
+        }
+
+        /* Style for gates */
+        .gate {
+            position: absolute;
+            width: 80px;
+            height: 40px;
+            background-color: green;
+            color: white;
+            text-align: center;
+            line-height: 40px;
+            cursor: pointer;
+        }
+
+        /* Positioning gates */
+        #gate-1 {
+            top: 50px;
+            left: 100px;
+        }
+
+        #gate-2 {
+            top: 50px;
+            right: 100px;
+        }
+
+        /* Style for the user */
+        #user {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: blue;
+            border-radius: 50%;
+            top: 500px;
+            left: 250px;
+            transition: transform 1s ease; /* Smooth transition for movement */
+        }
+
+        /* Style for the path (using SVG) */
+        svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Allows clicks to pass through the SVG */
+        }
+
+        /* Solid blue line for path */
+        line {
+            stroke: blue;
+            stroke-width: 4;
+        }
+
+        /* Arrow style for direction */
+        marker {
+            fill: blue;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Station Gates</h1>
+
+    <!-- Map container -->
+    <div id="map-container">
+        <!-- SVG for drawing the path -->
+        <svg id="path-svg">
+            <!-- Arrow definition -->
+            <defs>
+                <marker id="arrow" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto-start-reverse">
+                    <path d="M0,0 L10,5 L0,10 Z" />
+                </marker>
+            </defs>
+        </svg>
+
+        <!-- Gates -->
+        <div class="gate" id="gate-1" onclick="navigateToGate('gate-1')">Gate 1</div>
+        <div class="gate" id="gate-2" onclick="navigateToGate('gate-2')">Gate 2</div>
+
+        <!-- User on the map -->
+        <div id="user"></div>
+    </div>
+
+    <script>
+        // Function to handle navigation when a gate is clicked
+        function navigateToGate(gateId) {
+            const user = document.getElementById('user');
+            const gate = document.getElementById(gateId);
+
+            // Get user and gate positions
+            const userPosition = user.getBoundingClientRect();
+            const gatePosition = gate.getBoundingClientRect();
+
+            // Calculate direction (simplified as direct line movement)
+            const xOffset = gatePosition.left - userPosition.left;
+            const yOffset = gatePosition.top - userPosition.top;
+
+            // Move the user element towards the gate (smooth movement)
+            user.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+
+            // Draw the path from the user to the gate
+            drawArrowPath(userPosition.left + 10, userPosition.top + 10, gatePosition.left + 40, gatePosition.top + 20);
+
+            // After reaching the gate, redirect to the facilities page
+            setTimeout(() => {
+                window.location.href = "facilities.html"; // Redirect to facilities page
+            }, 1200); // Time delay for the user to reach the gate
+        }
+
+        // Function to draw a path with directional arrows between the user and the gate
+        function drawArrowPath(x1, y1, x2, y2) {
+            const pathSvg = document.getElementById('path-svg');
+
+            // Clear previous path if any
+            pathSvg.innerHTML = '';
+
+            // Create a new line element
+            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            line.setAttribute('x1', x1);
+            line.setAttribute('y1', y1);
+            line.setAttribute('x2', x2);
+            line.setAttribute('y2', y2);
+
+            // Add arrow marker to the line
+            line.setAttribute('marker-end', 'url(#arrow)');
+
+            // Add the line to the SVG
+            pathSvg.appendChild(line);
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+

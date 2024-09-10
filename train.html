@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upcoming Trains</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        .header {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        button {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Upcoming Trains</h1>
+    </div>
+
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Train Number</th>
+                    <th>Train Name</th>
+                    <th>Departure Time</th>
+                    <th>Platform Number</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="train-table-body">
+                <!-- Train rows will be inserted here dynamically -->
+            </tbody>
+        </table>
+
+        <div class="button-container">
+            <button onclick="bookTicket()">Book Ticket</button>
+            <button onclick="viewTrainInfo()">View Train Info</button>
+        </div>
+    </div>
+
+    <script>
+        // Example data - in practice, this would come from an API
+        const trains = [
+            { number: '12345', name: 'Express 1', time: '10:00 AM', platform: '3' },
+            { number: '67890', name: 'Express 2', time: '11:30 AM', platform: '4' },
+            { number: '54321', name: 'Express 3', time: '01:00 PM', platform: '2' }
+        ];
+
+        // Function to render train data into the table
+        function renderTrains() {
+            const tbody = document.getElementById('train-table-body');
+            tbody.innerHTML = ''; // Clear existing rows
+
+            trains.forEach(train => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${train.number}</td>
+                    <td>${train.name}</td>
+                    <td>${train.time}</td>
+                    <td>${train.platform}</td>
+                    <td>
+                        <button onclick="bookTicket('${train.number}')">Book Ticket</button>
+                        <button onclick="viewTrainInfo('${train.number}')">View Info</button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Dummy functions for button actions
+        function bookTicket(trainNumber) {
+            alert(`Booking ticket for train number ${trainNumber}`);
+            // Replace with actual booking logic
+        }
+
+        function viewTrainInfo(trainNumber) {
+            alert(`Viewing info for train number ${trainNumber}`);
+            // Replace with actual train info logic
+        }
+
+        // Initial rendering of train data
+        renderTrains();
+    </script>
+
+</body>
+</html>

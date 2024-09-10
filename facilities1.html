@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platform Facilities</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        .header {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        button {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Platform Facilities</h1>
+    </div>
+
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Facility</th>
+                    <th>Platform Number</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="facility-table-body">
+                <!-- Facility rows will be inserted here dynamically -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Example data - in practice, this would come from an API
+        const facilities = [
+            { name: 'Restroom', platform: '1' },
+            { name: 'Ticket Counter', platform: '1' },
+            { name: 'Food Court', platform: '2' },
+            { name: 'Restroom', platform: '2' },
+            { name: 'Ticket Counter', platform: '3' },
+            { name: 'Food Court', platform: '3' }
+        ];
+
+        // Function to render facility data into the table
+        function renderFacilities() {
+            const tbody = document.getElementById('facility-table-body');
+            tbody.innerHTML = ''; // Clear existing rows
+
+            facilities.forEach(facility => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${facility.name}</td>
+                    <td>${facility.platform}</td>
+                    <td>
+                        <button onclick="showPathway('${facility.name}', '${facility.platform}')">Pathway</button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Dummy function to show pathway
+        function showPathway(facilityName, platformNumber) {
+            alert(`Showing pathway to ${facilityName} at platform ${platformNumber}`);
+            // Replace with actual pathway logic or navigation
+        }
+
+        // Initial rendering of facility data
+        renderFacilities();
+    </script>
+
+</body>
+</html>
